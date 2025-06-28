@@ -1,4 +1,53 @@
-:root {
+:root{
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  --text-white: white
+}
+
+
+body{
+  width: 600px;
+  height: 1161px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* typography and icons */
+
+h1,
+h2{
+  font-weight: 400;
+
+}
+h1{
+  font-size: 2.5rem;
+}
+
+h2{
+  font-size: 1.5rem;
+}
+
+/* Layout */
+
+
+.header-bg-img{
+  background-image: url("/public/ferks-guare.png");
+  background-position: 90% 10%;
+  height: 170px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* color: var(--text-white); */
+  color: white;
+}
+
+.header-bg-img h1{
+  padding: 46px;
+}
+
+
+
+/* :root {
   font-family: "Roboto" sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -93,4 +142,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
