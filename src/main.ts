@@ -1,32 +1,30 @@
-import { menuArray } from "./data"
-import type { MenuArrayProps} from "./data"
-import pizzaImg from "./assets/images/pizza.png"
-import hamburgerImg from "./assets/images/hamburger.png"
-import beerImg from "./assets/images/beer.png"
-
-
-const menuEl = document.getElementById("menu")
-
+import { menuArray } from "./data";
+import type { MenuArrayProps } from "./data";
+import pizzaImg from "./assets/images/pizza.png";
+import hamburgerImg from "./assets/images/hamburger.png";
+import beerImg from "./assets/images/beer.png";
 interface ImgSrc {
-    [key: string]: string
+  [key: string]: string;
 }
-
+interface htmlTemplateProps {
+  (menu: MenuArrayProps): string;
+}
 const imgSrc: ImgSrc = {
-    "🍕" : pizzaImg,
-    "🍔" : hamburgerImg,
-    "🍺" : beerImg
-}
+  "🍕": pizzaImg,
+  "🍔": hamburgerImg,
+  "🍺": beerImg,
+};
 
-
-const htmlString = menuArray
-    .map((menu: MenuArrayProps ) => (`
+const menuContent = (menu: MenuArrayProps) => `
      <div class="menu__content">
         <div class="menu__item">
             <img class="menu__item-img" src="${imgSrc[menu.emoji]}">
             <div class="menu__item-details">
                 <ul class="menu__item-info">
                     <li class="menu__item-name">${menu.name}</li>
-                    <li class="menu__item-description">${menu.ingredients.join(", ")}</li>
+                    <li class="menu__item-description">${menu.ingredients.join(
+                      ", "
+                    )}</li>
                     <li class="menu__item-price">$${menu.price}</li>
                 </ul>
             </div>
@@ -35,21 +33,39 @@ const htmlString = menuArray
      
      </div> 
      
-        `) )
-    .join("")
- 
+        `;
 
+const getHtmlString = (
+  menuItems: MenuArrayProps[],
+  htmlTemplate: htmlTemplateProps
+) => menuItems.map((menu: MenuArrayProps) => htmlTemplate(menu)).join("");
 
-
-
-
-
-// function pour render 
-function render(element: HTMLElement, content: string) {
-    if(element) element.innerHTML = content
+// function pour render les compoment de l app
+const render = (element: HTMLElement | null, content: string) => {
+  try {
+    if (!element || !content){
+        throw new Error("element and content parameters should not be empty! ");
+    }
+    
+    element.innerHTML = content;
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
 }
 
-render(menuEl!, htmlString)
+function main() {
+    const menuEl = document.getElementById("menu");
+
+    // render menu elements
+    if(menuEl){
+        render(menuEl, getHtmlString(menuArray, menuContent));
+    }
+}
+
+main()
+
+
+
 // import typescriptLogo from './typescript.svg'
 // import { setupCounter } from './counter.ts'
 
@@ -73,6 +89,4 @@ render(menuEl!, htmlString)
 
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 
-
 // template pour afficher le header
-
