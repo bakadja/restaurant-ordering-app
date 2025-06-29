@@ -15,14 +15,14 @@
 
 
 body{
-  width: 600px;
+  width: 700px;
   height: 1161px;
   display: flex;
   flex-direction: column;
   color: black;
 }
 
-/* typography and icons */
+/* typography */
 
 h1,
 h2{
@@ -37,6 +37,10 @@ h2{
   font-size: var(--text-xl);
 }
 
+ul{
+  list-style: none;
+}
+
 /* Layout */
 header{
   height: 200px;
@@ -44,21 +48,81 @@ header{
   color: var(--text-white); 
 }
 
-header div{
-  padding: 40px 10px;
-}
 header h1{
   margin-top: 0;
+  margin-bottom: 0;
 }
 
-.header-bg-img{
+.hero-img{
   background-image: url("/public/ferks-guare.png");
   background-position: 60% 40%;
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }
+/* menu & items */
 
+.menu__content{
+  height: 140px;
+  border-bottom: 1px solid #D2D2D2;
+  margin-bottom: 45px;
+}
+
+.menu__item{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.menu__item-img{
+  width: 70px;
+  height: 89px;
+}
+
+.menu__item-details{
+  width: 480px;
+}
+
+.menu__item-info{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+   padding: 0;
+  margin: 0;
+}
+
+.menu__item-name{
+  font-size: var(--text-3xl);
+}
+
+.menu__item-description{
+  font-size: var(--text-base);
+  color: #8B8B8B;
+  font-style: italic;
+}
+
+.menu__item-price{
+  font-size: var(--text-xl);
+}
+
+.menu__item-add-btn{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid #DEDEDE;
+  background-color: var(--text-white);
+}
+
+/* helper */
+.text-3xl{
+  font-size: var(--text-3xl);
+}
+
+.p-40{
+  padding: 40px 40px;
+
+}
 
 
 
