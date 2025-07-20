@@ -51,6 +51,28 @@
         <button class="menu-item__add-btn" type="button">+</button>
       </article>
       <div class="divider"></div>
+      <!-- Chechout Sections -->
+      <section class="order-section">
+        <h3 class="order-section__title">Your order</h3>
+        <ul class="order-list">
+          <li class="order-item">
+            <span class="order-item__name">Pizza</span>
+            <button class="order-item__remove-btn" type="button">remove</button>
+            <span class="order-item__price">$14</span>
+          </li>
+          <li class="order-item">
+            <span class="order-item__name">Pizza</span>
+            <button class="order-item__remove-btn" type="button">remove</button>
+            <span class="order-item__price">$12</span>
+          </li>
+        </ul>
+        <div class="divider"></div>
+        <div class="order-total">
+          <span class="order-total__label">Total Price:</span>
+          <span class="order-total__amount">$26</span>
+        </div>
+        <button class="order-section__complete-btn" type="button">Complete order</button>
+      </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
