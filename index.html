@@ -11,18 +11,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <!-- Google Fonts: Smythe -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Smythe&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="site-header">
-      <h1 class="site-header__title ">Jimmy’s Diner</h1>
-      <h2 class="site-header__subtitle ">The best burgers and pizzas in town.</h2>
+      <h1 class="site-header__title">Jimmy’s Diner</h1>
+      <h2 class="site-header__subtitle">
+        The best burgers and pizzas in town.
+      </h2>
     </header>
     <main>
       <article class="menu-item menu-item--pizza">
-        <img class="menu-item__image" src="./src/assets/images/pizza.png" alt="A pepperoni, mushroom, and mozzarella pizza">
+        <img
+          class="menu-item__image"
+          src="./src/assets/images/pizza.png"
+          alt="A pepperoni, mushroom, and mozzarella pizza"
+        />
         <header>
           <h3 class="menu-item__title">Pizza</h3>
           <p class="menu-item__ingredients">pepperoni, mushroom, mozarella</p>
@@ -32,7 +41,11 @@
       </article>
       <div class="divider"></div>
       <article class="menu-item menu-item--hamburger">
-        <img class="menu-item__image" src="./src/assets/images/hamburger.png" alt="A beef hamburger with cheese and lettuce">
+        <img
+          class="menu-item__image"
+          src="./src/assets/images/hamburger.png"
+          alt="A beef hamburger with cheese and lettuce"
+        />
         <header>
           <h3 class="menu-item__title">Hamburger</h3>
           <p class="menu-item__ingredients">beef, cheese, lettuce</p>
@@ -42,7 +55,11 @@
       </article>
       <div class="divider"></div>
       <article class="menu-item menu-item--beer">
-        <img class="menu-item__image" src="./src/assets/images/beer.png" alt="A glass of beer">
+        <img
+          class="menu-item__image"
+          src="./src/assets/images/beer.png"
+          alt="A glass of beer"
+        />
         <header>
           <h3 class="menu-item__title">Beer</h3>
           <p class="menu-item__ingredients">grain, hops, yeast, water</p>
@@ -71,9 +88,52 @@
           <span class="order-total__label">Total Price:</span>
           <span class="order-total__amount">$26</span>
         </div>
-        <button class="order-section__complete-btn" type="button">Complete order</button>
+        <button class="order-section__complete-btn" type="button">
+          Complete order
+        </button>
       </section>
     </main>
+    <div class="modal" id="modal">
+      <div class="close-modal-btn-container">
+        <button
+          type="button"
+          class="modal-close-btn"
+          id="modal-close-btn"
+          disabled
+        >
+          X
+        </button>
+      </div>
+      <div class="modal-inner" id="modal-inner">
+        <h3 class="modal-title">Enter card details</h3>
+
+        <form id="consent-form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            aria-label="User name"
+            required
+          />
+          <input
+            type="number"
+            name="cardNumber"
+            placeholder="Enter card number"
+            aria-label="Card number"
+            required
+          />
+          <input
+            type="number"
+            name="cardCVV"
+            placeholder="Enter CVV"
+            aria-label="Card CVV"
+            required
+          />
+
+          <button type="submit" class="modal-btn">Pay</button>
+        </form>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
