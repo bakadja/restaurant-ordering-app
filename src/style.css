@@ -19,7 +19,7 @@ body {
   padding: 0;
   font-family: "Smythe", system-ui;
   width: 600px;
-  max-height: 2000px;
+  max-height: 100vh;
   display: grid;
   grid-template-columns: 2em 1fr 2em;
   grid-template-areas:
@@ -216,6 +216,7 @@ main {
 }
 
 .modal-title {
+  margin-bottom: 2em;
   font-size: 1.5rem;
   color: #000;
   text-align: center;
@@ -249,25 +250,57 @@ main {
 }
 
 .modal-btn {
+  border: none;
+  border-radius: 5px;
   margin-top: 2em;
-  padding: 1.9em;
+  padding: 2em;
   width: 100%;
   cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+  background-color: #16db99;
+
 }
 
 /* modal input */
 
 input {
-  margin-top: 10px;
+  margin-top: 1em;
   border: 1.3px solid #757575;
   padding: 2em;
   width: 100%;
   border-radius: 3px;
 }
 
+/*
+  Styles input fields that have user-entered content (i.e., the placeholder is not shown).
+  - Increases font size for better readability.
+  - Adds extra padding for improved user experience.
+*/
 input:not(:placeholder-shown) {
-  font-size: 20px;
+  font-size: 1.25rem;
   padding: 1.2em;
 }
+
+/* 
+  Removes the default spinner (increment/decrement arrows) from number input fields
+  in WebKit browsers (such as Chrome and Safari) by setting their opacity to 0.
+  This provides a cleaner UI for custom number input styling.
+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0;
+}
+
+/* 
+  Removes the default spinner controls from number input fields across browsers
+  by setting the appearance to 'textfield'. This provides a cleaner look for
+  custom styling of input[type="number"] elements.
+*/
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 
 /* Utility CSS class for reusable styling. */
