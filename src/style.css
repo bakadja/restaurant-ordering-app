@@ -43,10 +43,13 @@ h2 {
   font-size: 1.45rem;
 }
 
+h3 {
+  font-size: 1.75rem;
+}
 header {
   font-weight: 400;
-  color: #fff;
 }
+
 
 /* ***************************************** */
 /* *************** header ****************** */
@@ -58,6 +61,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 60% center;
+  color: #fff;
 }
 
 .site-header__title,
@@ -69,3 +73,46 @@ header {
   margin-bottom: .125em;
 }
 
+/* ***************************************** */
+/* *************** main ****************** */
+/* ***************************************** */
+
+main {
+  display: grid;
+  gap: 2em 0;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+/* menu-item */
+.menu-item__title {
+  margin: 0;
+  margin-bottom: .5em;
+}
+.menu-item__ingredients {
+  font-size: 1rem;
+  color: #8B8B8B;
+  margin: 0
+}
+
+.menu-item__price {
+  font-size: 1.25rem;
+  margin-top: .5em;
+}
+
+.menu-item__add-btn {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  border: 1.5px solid #DEDEDE
+}
+
+.divider {
+  border-bottom: 1px solid #D2D2D2;
+  grid-column: 1 / -1;
+}
