@@ -19,7 +19,7 @@ body {
   padding: 0;
   font-family: "Smythe", system-ui;
   width: 600px;
-  max-height: 100vh;
+  max-height: 2000px;
   display: grid;
   grid-template-columns: 2em 1fr 2em;
   grid-template-areas:
@@ -101,6 +101,7 @@ main {
   margin: 0;
   margin-bottom: 0.5em;
 }
+
 .menu-item__ingredients {
   font-size: 1rem;
   color: #8b8b8b;
@@ -137,24 +138,56 @@ main {
 .order-section__title {
   text-align: center;
 }
+
 .order-list {
   display: grid;
   gap: 1em 0;
 }
+
 .order-item {
   display: flex;
   justify-content: space-between;
   gap: 1em;
 }
+
+.order-item__name,
+.order-total__label {
+  font-size: 1.75rem;
+}
 .order-item__remove-btn {
   margin-right: auto;
   border: none;
   background-color: unset;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #bbb;
 }
+
+.order-item__price,
+.order-total__amount {
+  font-size: 1.25rem;
+}
+
 .order-total {
   display: flex;
   justify-content: space-between;
 }
 
+.order-divider {
+  border: 2px solid #393333;
+}
+
+.order-section__complete-btn {
+  margin-top: 2em;
+  margin-bottom: 4em;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px 0px #0000000D;
+  padding: 1.65em 2em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  color: #fff;
+  background-color: #16DB99;
+
+}
 /* Utility CSS class for reusable styling. */
 
