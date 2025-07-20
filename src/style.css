@@ -181,13 +181,93 @@ main {
   margin-bottom: 4em;
   border: none;
   border-radius: 3px;
-  box-shadow: 0px 1px 2px 0px #0000000D;
+  box-shadow: 0px 1px 2px 0px #0000000d;
   padding: 1.65em 2em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 700;
   color: #fff;
-  background-color: #16DB99;
-
+  background-color: #16db99;
 }
-/* Utility CSS class for reusable styling. */
 
+/* ***************************************** */
+/* *************** Modal ****************** */
+/* ***************************************** */
+
+.modal {
+  display: "inline";
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 545px;
+  width: 525px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 2px #666;
+  background-color: #fff;
+  /* color: whitesmoke; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.modal-inner {
+  width: 475px;
+  margin: 0 auto;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: #000;
+  text-align: center;
+}
+
+/* modal buttons */
+
+.close-modal-btn-container {
+  text-align: right;
+  margin: 9px;
+}
+
+.modal-close-btn {
+  font-size: 22px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid transparent;
+  /* color: black; */
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:active {
+  color: red;
+  cursor: pointer;
+}
+
+.modal-close-btn:disabled {
+  color: rgb(20, 53, 197);
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.modal-btn {
+  margin-top: 2em;
+  padding: 1.9em;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* modal input */
+
+input {
+  margin-top: 10px;
+  border: 1.3px solid #757575;
+  padding: 2em;
+  width: 100%;
+  border-radius: 3px;
+}
+
+input:not(:placeholder-shown) {
+  font-size: 20px;
+  padding: 1.2em;
+}
+
+/* Utility CSS class for reusable styling. */
