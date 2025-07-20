@@ -19,7 +19,7 @@ body {
   padding: 0;
   font-family: "Smythe", system-ui;
   width: 600px;
-  max-height: 100vh;
+  max-height: 1400px;
   display: grid;
   grid-template-columns: 2em 1fr 2em;
   grid-template-areas:
@@ -189,12 +189,23 @@ main {
   background-color: #16db99;
 }
 
+/* Ordering complete section */
+.order-complete {
+  background-color: #ECFDF5;
+  color: #065F46;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 2rem;
+  padding: .5em;
+  margin-bottom: 2em;
+}
+
 /* ***************************************** */
 /* *************** Modal ****************** */
 /* ***************************************** */
 
 .modal {
-  display: "inline";
+  display: none;
   position: fixed;
   right: 0;
   left: 0;
@@ -301,6 +312,3 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
-
-
-/* Utility CSS class for reusable styling. */
