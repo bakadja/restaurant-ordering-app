@@ -99,6 +99,7 @@
         </p>
       </section>
     </main>
+    <!-- Modal Section -->
     <div class="modal" id="modal">
       <div class="close-modal-btn-container">
         <button
@@ -113,16 +114,18 @@
       <div class="modal-inner" id="modal-inner">
         <h3 class="modal-title">Enter card details</h3>
 
-        <form id="consent-form">
+        <form id="" class="modal-form">
           <input
             type="text"
-            name="name"
+            id="input-name"
+            name="userName"
             placeholder="Enter your name"
             aria-label="User name"
             required
           />
           <input
             type="number"
+            id="input-card-number"
             name="cardNumber"
             placeholder="Enter card number"
             aria-label="Card number"
@@ -130,6 +133,7 @@
           />
           <input
             type="number"
+            id="input-card-cvv"
             name="cardCVV"
             placeholder="Enter CVV"
             aria-label="Card CVV"
