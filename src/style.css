@@ -205,7 +205,7 @@ main {
 /* ***************************************** */
 
 .modal {
-  display: inline;
+  display: none;
   position: fixed;
   right: 0;
   left: 0;
