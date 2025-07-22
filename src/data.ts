@@ -1,4 +1,4 @@
-export interface MenuArrayProps {
+export interface MenuProps {
     name: string;
     ingredients: string[];
     id: number;
@@ -6,7 +6,7 @@ export interface MenuArrayProps {
     emoji: string;
 }
 
-export const menuArray: MenuArrayProps[] = [
+export const menuArray: MenuProps[] = [
     {
         name: "Pizza",
         ingredients: ["pepperoni", "mushrom", "mozarella"],
