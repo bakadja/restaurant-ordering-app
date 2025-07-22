@@ -4,39 +4,51 @@ import { menuArray } from './data'
 
 interface ButtonProps {
   className: string;
-  type: "button" | "submit";
+  type?: "button" | "submit";
   id: number;
   children: string;
 }
 
-const Button = ({className, type, id, children}: ButtonProps) => (
+const Button = (...props: ButtonProps[]) => {
+  const [ className, type, id, children ]= props
+  return (
   `
     <button
       class="${className}"
-      type="${type}"
+      type="${type ?? `button`}"
       data-id=${id}
     >
     ${children}
     </button>
   `
 )
+} 
 
-const Item = (item: MenuProps) => (
+const removeButton = (itemId: number) => {
+  const props = {
+    className: "order-item__remove-btn",
+    id: itemId,
+    children: "remove"
+  }
+
+  return Button(props)
+}
+
+
+const Item = (item: MenuProps) => {
+  
+ return (
   `
   <li class="order-item">
     <span class="order-item__name">${item.name}</span>
-    <button
-      data-id=${item.id}
-      data-${item.name}=${item.name}
-      class="order-item__remove-btn" 
-      type="button">
-      remove
-    </button>
+    ${Button()}
     <span class="order-item__price">$${item.price}</span>
   </li>
 
 `
 )
+} 
+  
 
 const AddItems = (data: MenuProps[]) => (
   `
