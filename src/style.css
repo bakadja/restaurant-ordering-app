@@ -205,7 +205,7 @@ main {
 /* ***************************************** */
 
 .modal {
-  display: none;
+  display: inline;
   position: fixed;
   right: 0;
   left: 0;
@@ -215,9 +215,8 @@ main {
   height: 545px;
   width: 525px;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px 2px #666;
+  box-shadow: 5.19px 5.19px 255.44px 0px #00000080;
   background-color: #fff;
-  /* color: whitesmoke; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -245,7 +244,7 @@ main {
   font-weight: bold;
   background-color: transparent;
   border: 1px solid transparent;
-  /* color: black; */
+  color: black;
 }
 
 .modal-close-btn:hover,
@@ -255,7 +254,6 @@ main {
 }
 
 .modal-close-btn:disabled {
-  color: rgb(20, 53, 197);
   opacity: 0.2;
   cursor: not-allowed;
 }
@@ -263,7 +261,6 @@ main {
 .modal-btn {
   border: none;
   border-radius: 5px;
-  margin-top: 2em;
   padding: 2em;
   width: 100%;
   cursor: pointer;
@@ -273,24 +270,22 @@ main {
 
 }
 
-/* modal input */
+/* modal form */
 
-input {
-  margin-top: 1em;
-  border: 1.3px solid #757575;
-  padding: 2em;
-  width: 100%;
-  border-radius: 3px;
+.modal-form {
+  display: grid;
+  grid-auto-rows: minmax(60px, 70px);
+  gap: 2em 0;
 }
 
-/*
-  Styles input fields that have user-entered content (i.e., the placeholder is not shown).
-  - Increases font size for better readability.
-  - Adds extra padding for improved user experience.
-*/
-input:not(:placeholder-shown) {
-  font-size: 1.25rem;
-  padding: 1.2em;
+/* input */ 
+
+input {
+  border: 1.3px solid #757575;
+  padding: 1em 2em;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 20px;
 }
 
 /* 
