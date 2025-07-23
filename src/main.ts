@@ -38,7 +38,7 @@ const Button = (props: ButtonProps) => {
   const { className, type, id, dataId, children } = props;
   return `
     <button
-      id=""${id}
+      id="${id}"
       class="${className}"
       type="${type ?? `button`}"
       data-id=${dataId}
@@ -58,24 +58,26 @@ const AddButton = (itemId: number) => {
   return Button(props);
 };
 
-const RemoveButton = (itemId: number) => {
-  const props = {
-    className: "order-item__remove-btn",
-    id: itemId,
-    children: "remove",
-  };
+// const RemoveButton = (itemId: number) => {
+//   const props = {
+//     className: "order-item__remove-btn",
+//     id: itemId,
+//     children: "remove",
+//   };
 
-  return Button(props);
-};
+//   return Button(props);
+// };
 
 //Item
 const ItemTitle = (title: string) => `
   <span class="menu-item__title">${title}</span>
 `;
 const Item = (menu: MenuProps) => `
-  ${ItemTitle(menu.name)}
-  <span class="menu-item__ingredients">${menu.ingredients.join()}</span>
-  <span class="menu-item__price">$${menu.price}</span>
+ <div>
+    ${ItemTitle(menu.name)}
+    <span class="menu-item__ingredients">${menu.ingredients.join()}</span>
+    <span class="menu-item__price">$${menu.price}</span>
+ </div>
 `;
 
 const AddItem = (menu: MenuProps) =>
@@ -84,98 +86,104 @@ const AddItem = (menu: MenuProps) =>
     ${AddButton(menu.id)}
   `;
 
-const RemoveItem = (item: MenuProps) => {
-  return `
-  <li class="order-item">
-    <span class="order-item__name">${item.name}</span>
-    ${RemoveButton(item.id)}
-    <span class="order-item__price">$${item.price}</span>
-  </li>
-`;
-};
+// const RemoveItem = (item: MenuProps) => {
+//   return `
+//   <li class="order-item">
+//     <span class="order-item__name">${item.name}</span>
+//     ${RemoveButton(item.id)}
+//     <span class="order-item__price">$${item.price}</span>
+//   </li>
+// `;
+// };
 
 // Items
 const ListItems = (data: MenuProps[]) => {
   return `
   <ul class="menu-item menu-item--pizza">
-    ${data.map((menu) => {
-      return `
-        <li>
-          ${Image(menu)}
-          ${AddItem(menu)}  
-        </li>     
-       `;
-    }).join(" ")}
+    ${data
+      .map((menu) => {
+        return `
+          <li class="menu-list">
+            ${Image(menu)}
+            ${AddItem(menu)}
+          </li>`;
+      })
+      .join("")
+      }
   </ul>
 `;
 };
-const RemoveItems = (data: MenuProps[]) => {
-  const id = 0;
-  const filteredData = data.filter((menu) => (menu.id = id));
+// const RemoveItems = (data: MenuProps[]) => {
+//   const id = 0;
+//   const filteredData = data.filter((menu) => (menu.id = id));
 
-  return `
-  <ul class="order-list">
-    ${
-      filteredData.length > 0 &&
-      filteredData.map((menu: MenuProps) => RemoveItem(menu))
-    }
-  </ul>
-`;
-};
+//   return `
+//   <ul class="order-list">
+//     ${
+//       filteredData.length > 0 &&
+//       filteredData.map((menu: MenuProps) => RemoveItem(menu))
+//     }
+//   </ul>
+// `;
+// };
 
-const SumItems = (data: MenuProps[]) => {
-  const id = 0;
-  const prices = data
-    .filter((menu) => (menu.id = id))
-    .map((menu) => menu.price);
-  return `
-  <div class="order-total">
-    <span class="order-total__label">Total Price:</span>
-    <span class="order-total__amount">
-    ${
-      prices.length > 0 &&
-      prices.reduce((sum, currentPrice) => sum + currentPrice, 0)
-    }
-    </span>
-  </div>
-  `;
-};
+// const SumItems = (data: MenuProps[]) => {
+//   const id = 0;
+//   const prices = data
+//     .filter((menu) => (menu.id = id))
+//     .map((menu) => menu.price);
+//   return `
+//   <div class="order-total">
+//     <span class="order-total__label">Total Price:</span>
+//     <span class="order-total__amount">
+//     ${
+//       prices.length > 0 &&
+//       prices.reduce((sum, currentPrice) => sum + currentPrice, 0)
+//     }
+//     </span>
+//   </div>
+//   `;
+// };
 
 // order
-const AddOrderBtn = () => {
-  const props = {
-    className: "order-section__complete-btn",
-    children: "Complete order",
-  };
-  return Button(props);
-};
+// const AddOrderBtn = () => {
+//   const props = {
+//     className: "order-section__complete-btn",
+//     children: "Complete order",
+//   };
+//   return Button(props);
+// };
 
-const AddOrder = () => {
-  return `
-      <h3 class="order-section__title">Your order</h3>
-      ${AddItems()}
-      <div class="divider order-divider"></div>
-      ${SumItems()}
-      ${AddOrderBtn()}    
-    `;
-};
+// const AddOrder = () => {
+//   return `
+//       <h3 class="order-section__title">Your order</h3>
+//       ${AddItems()}
+//       <div class="divider order-divider"></div>
+//       ${SumItems()}
+//       ${AddOrderBtn()}    
+//     `;
+// };
+
+
+// function onAdd(event) {
+//   console.log("target", event.target);
+//   console.log("dataset", event.target.dataset.id);
+// }
+
+function render(data: MenuProps[], getHtmlString:(data: MenuProps[]) => string ) {
+  const menuEl =  document.getElementById("order-menu")
+  const htmlString = getHtmlString(data)
+  if(htmlString && menuEl) {
+    menuEl.innerHTML = htmlString
+  }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   //document.addEventListener("click", onAdd);
-  document.getElementById("order-menu")!.innerHTML = createMenuItem(menuArray);
+  render(menuArray, ListItems)
 });
-
-function onAdd(event) {
-  console.log("target", event.target);
-  console.log("dataset", event.target.dataset.id);
-}
-
-function createMenuItem(data: MenuProps[]) {
-  return `
-    ${ListItems(data)}
-  
-  `;
-}
 
 //OrderItem()
 //Order(menuArray)
