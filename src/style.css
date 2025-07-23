@@ -92,24 +92,37 @@ main {
 
 .menu-item {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1em 0;
 }
 
 /* menu-item */
-.menu-item__title {
+
+.menu-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.menu-list > div {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: .4em;
+}
+/* .menu-item__title {
   margin: 0;
   margin-bottom: 0.5em;
-}
+} */
 
 .menu-item__ingredients {
   font-size: 1rem;
   color: #8b8b8b;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .menu-item__price {
   font-size: 1.25rem;
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
 }
 
 .menu-item__add-btn {
