@@ -109,20 +109,18 @@ main {
   flex-direction: column;
   gap: .4em;
 }
-/* .menu-item__title {
-  margin: 0;
-  margin-bottom: 0.5em;
-} */
+
+ .menu-item__title {
+  font-size: 1.75rem;
+ }
 
 .menu-item__ingredients {
   font-size: 1rem;
   color: #8b8b8b;
-  /* margin: 0; */
 }
 
 .menu-item__price {
   font-size: 1.25rem;
-  /* margin-top: 0.5em; */
 }
 
 .menu-item__add-btn {
