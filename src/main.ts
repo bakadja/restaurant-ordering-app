@@ -14,7 +14,7 @@ const imgSRC: ImgSRC = {
   beer: BeerImg,
 };
 
-const Image = (menu: MenuProps) =>
+const getImage = (menu: MenuProps) =>
   `
      <img 
       class="menu-item__image"
@@ -34,11 +34,11 @@ interface ButtonProps {
   children: string;
 }
 
-const Button = (props: ButtonProps) => {
+const getButton = (props: ButtonProps) => {
   const { className, type, id, dataId, children } = props;
   return `
     <button
-      id="${id}"
+      id="${id ?? ``}"
       class="${className}"
       type="${type ?? `button`}"
       data-id=${dataId}
@@ -48,14 +48,14 @@ const Button = (props: ButtonProps) => {
   `;
 };
 
-const AddButton = (itemId: number) => {
+const getAddButton = (itemId: number) => {
   const props = {
     className: "menu-item__add-btn",
     dataId: itemId,
     children: "+",
   };
 
-  return Button(props);
+  return getButton(props);
 };
 
 // const RemoveButton = (itemId: number) => {
@@ -69,22 +69,23 @@ const AddButton = (itemId: number) => {
 // };
 
 //Item
-const ItemTitle = (title: string) => `
+const getItemTitle = (title: string) => `
   <span class="menu-item__title">${title}</span>
 `;
-const Item = (menu: MenuProps) => `
+const getItem = (menu: MenuProps) => `
  <div>
-    ${ItemTitle(menu.name)}
+    ${getItemTitle(menu.name)}
     <span class="menu-item__ingredients">${menu.ingredients.join()}</span>
     <span class="menu-item__price">$${menu.price}</span>
  </div>
 `;
 
-const AddItem = (menu: MenuProps) =>
-  `
-    ${Item(menu)}
-    ${AddButton(menu.id)}
+const getAddItem = (menu: MenuProps) => {
+  return `
+    ${getItem(menu)}
+    ${getAddButton(menu.id)}
   `;
+};
 
 // const RemoveItem = (item: MenuProps) => {
 //   return `
@@ -97,19 +98,22 @@ const AddItem = (menu: MenuProps) =>
 // };
 
 // Items
-const ListItems = (data: MenuProps[]) => {
+const getListItems = (data: MenuProps[]) => {
   return `
-  <ul class="menu-item menu-item--pizza">
+  <ul id="menu-item" class="menu-item menu-item--pizza">
     ${data
       .map((menu) => {
         return `
           <li class="menu-list">
-            ${Image(menu)}
-            ${AddItem(menu)}
-          </li>`;
+            ${getImage(menu)}
+            ${getAddItem(menu)}
+            </li>
+          <li>
+            <div class="divider"></div>
+          </li>
+          `;
       })
-      .join("")
-      }
+      .join("")}
   </ul>
 `;
 };
@@ -160,29 +164,53 @@ const ListItems = (data: MenuProps[]) => {
 //       ${AddItems()}
 //       <div class="divider order-divider"></div>
 //       ${SumItems()}
-//       ${AddOrderBtn()}    
+//       ${AddOrderBtn()}
 //     `;
 // };
 
 
-// function onAdd(event) {
-//   console.log("target", event.target);
-//   console.log("dataset", event.target.dataset.id);
-// }
 
-function render(data: MenuProps[], getHtmlString:(data: MenuProps[]) => string ) {
-  const menuEl =  document.getElementById("order-menu")
-  const htmlString = getHtmlString(data)
-  if(htmlString && menuEl) {
-    menuEl.innerHTML = htmlString
+function render(
+  data: MenuProps[],
+  getHtmlString: (data: MenuProps[]) => string,
+  htmlElement: HTMLElement,
+) {
+  const htmlString = getHtmlString(data);
+  if(htmlString && htmlElement) {
+    htmlElement.innerHTML = htmlString
   }
+}
+
+function onAdd(event: Event) {
+    //console.log("event",event)
+    console.log("target", event.target);
+    console.log("dataset", event.target.dataset.id);
+
+    try {
+      const dataId = Number(event.target?.dataset.id)
+
+      if(dataId) {
+        console.log(dataId)
+      }
+    } catch (error) {
+      console.error("error", error)
+    }
+    // dois return les data afficher une fonction get et le DomEl a modiifer 
+    const data: MenuProps[] = []
+    
+    return {
+      data,
+      getAddItem
+    }
 }
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  //document.addEventListener("click", onAdd);
-  render(menuArray, ListItems)
+  document.addEventListener("click", onAdd);
+  const orderMenu = document.getElementById("order-menu")!;
+  //const menuItem = document.getElementById("menu-item")!
+  render(menuArray, getListItems, orderMenu);
 });
 
 //OrderItem()
