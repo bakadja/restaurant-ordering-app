@@ -13,36 +13,8 @@ const imgSRC: ImgSRC = {
   beer: BeerImg,
 };
 
-
-// render 
-document.addEventListener("DOMContentLoaded", () => {
-  const orderMenuEl = document.getElementById("order-menu")!;
-  const { listItemStr } = getHtmlString()
-  
-  render(listItemStr, orderMenuEl)
-  // add order
-
-  document.addEventListener('click', onAdd)
-})
-
-function render(htmlString: string, htmlElement: HTMLElement) {
-  if (htmlString && htmlElement) {
-    htmlElement.innerHTML = htmlString;
-  }
-}
-
-
-function onAdd(event: Event) {
-  const target = event.target as HTMLElement
-  const dataId = Number(target.dataset.id);
-  if(dataId) {
-
-  }
-  return null;
-}
-
-function getHtmlString() {
-  const listItemStr = `
+// htmlSTring
+const listItemHtmlStr = `
   <ul id="menu-item" class="menu-item menu-item--pizza">
     ${menuArray
       .map((menu) => {
@@ -53,27 +25,79 @@ function getHtmlString() {
               src="${imgSRC[menu.name.toLowerCase()]}"
               alt="${menu.ingredients.join()}"
             />
-            <span class="menu-item__title">${menu.name}</span>
-            <span class="menu-item__ingredients">${menu.ingredients.join()}</span>
-            <span class="menu-item__price">$${menu.price}</span>
+            <div>
+              <span class="menu-item__title">${menu.name}</span>
+              <span class="menu-item__ingredients">${menu.ingredients.join()}</span>
+              <span class="menu-item__price">$${menu.price}</span>
+            </div>
+            <button class="menu-item__add-btn" type="button" data-id="${
+              menu.id
+            }">+</button>
         </li>
         <li>
             <div class="divider"></div>
         </li>
           `;
       })
-      .join("")
-    }
+      .join("")}
   </ul>
 `;
 
+// render
+document.addEventListener("DOMContentLoaded", () => {
+  // render menu
+  const orderMenuEl = document.getElementById("order-menu")!;
+  render(listItemHtmlStr, orderMenuEl);
 
+  // add a new order
+  document.addEventListener("click", onAdd);
+});
 
-  return {
-    listItemStr
-  };
+function render(htmlString: string, htmlElement: HTMLElement) {
+  if (htmlString && htmlElement) {
+    htmlElement.innerHTML = htmlString;
+  }
 }
 
+const uniqueMenuData = new Set<MenuProps>();
+function onAdd(event: Event) {
+  const target = event.target as HTMLElement;
+  const dataId = Number(target.dataset.id);
 
+  if (dataId > -1) {
+    const foundMenu = menuArray.find((menu) => menu.id === dataId);
+    foundMenu && uniqueMenuData.add(foundMenu);
+  }
 
+  if (uniqueMenuData.size > 0) {
+    const menuData = Array.from(uniqueMenuData)
+    const totalPrice = menuData.reduce((sum, currentMenu) => sum + currentMenu.price , 0)
+    
+    const menuHtmlStr = `
+    <h3 class="order-section__title">Your order</h3>
+    <ul class="order-list"> 
+      ${menuData
+        .map(
+          (menu) => `
+          <li class="order-item">
+            <span class="order-item__name">${menu.name}</span>
+            <button class="order-item__remove-btn" data-id="200" type="button">remove</button>
+            <span class="order-item__price">$${menu.price}</span>
+          </li>
+        `
+        )
+        .join(" ")}
+    </ul>
+    <div class="divider order-divider"></div>
+    <div class="order-total">
+          <span class="order-total__label">Total Price:</span>
+          <span class="order-total__amount">$${totalPrice}</span>
+    </div>
+    <button class="order-section__complete-btn" type="button">
+        Complete order
+    </button>
+   `;
 
+    render(menuHtmlStr, document.getElementById("add-order")!);
+  }
+}

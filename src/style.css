@@ -25,7 +25,7 @@ body {
   grid-template-areas:
     " head head head "
     " .... main .... ";
-  gap: 2em 0;
+  gap: 4em 0;
   background-color: #fff;
 }
 
@@ -38,6 +38,10 @@ main {
 }
 
 /* Typography */
+h1,
+h2 {
+  font-weight: 400;
+}
 h1 {
   font-size: 2.45rem;
 }
@@ -64,7 +68,7 @@ li {
 /* ***************************************** */
 
 .site-header {
-  padding: 2em;
+  padding: 3em 2em;
   background-image: url("/public/ferks-guare.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -92,7 +96,7 @@ main {
 
 .menu-item {
   display: grid;
-  gap: 1em 0;
+  gap: 3em 0;
 }
 
 /* menu-item */
@@ -147,6 +151,7 @@ main {
 
 .order-section__title {
   text-align: center;
+  font-weight: 400;
 }
 
 .order-list {
