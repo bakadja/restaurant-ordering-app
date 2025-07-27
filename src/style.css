@@ -204,6 +204,13 @@ main {
   background-color: #16db99;
 }
 
+.order-section__complete-btn:disabled {
+  cursor: not-allowed;
+  /* background-color: #757575; */
+  opacity: 0.2;
+
+}
+
 /* Ordering complete section */
 .order-complete {
   background-color: #ECFDF5;
@@ -214,6 +221,8 @@ main {
   padding: .5em;
   margin-bottom: 2em;
 }
+
+
 
 /* ***************************************** */
 /* *************** Modal ****************** */

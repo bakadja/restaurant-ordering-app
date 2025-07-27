@@ -4,6 +4,7 @@ import PizzaImg from "./assets/images/pizza.png";
 import HamburgerImg from "./assets/images/hamburger.png";
 import BeerImg from "./assets/images/beer.png";
 
+//TODO: fixer le css pour les cas ou le button est disabled
 interface ImgSRC {
   [key: string]: string;
 }
@@ -12,7 +13,7 @@ const imgSRC: ImgSRC = {
   hamburger: HamburgerImg,
   beer: BeerImg,
 };
-let count = 0;
+
 const uniqueMenuData = new Set<MenuProps>();
 const listItemHtmlStr = `
   <ul id="menu-item" class="menu-item menu-item--pizza">
@@ -46,40 +47,28 @@ const listItemHtmlStr = `
 document.addEventListener("DOMContentLoaded", () => {
   const orderMenuEl = document.getElementById("order-menu")!;
   render(listItemHtmlStr, orderMenuEl);
-  
-  document.querySelector("main")!.addEventListener("click", onAdd);
-});
 
-function render(htmlString: string, htmlElement: HTMLElement) {
-  count++
-  console.log("count", count)
-  if (htmlString && htmlElement) {
-    htmlElement.innerHTML = htmlString;
-  }
-}
+  document.querySelector("main")!.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    const hasNameAndIdProp = "name" in target.dataset && "id" in target.dataset;
 
-function onAdd(event: Event) {
-  const target = event.target as HTMLElement;
-  const dataId = Number(target.dataset.id);
+    if (hasNameAndIdProp) {
+      console.log("dataset name", target.dataset.name);
+      onRemove(event, reRender);
+    } else {
+      console.log("dataset id", target.dataset.id);
+      onAdd(event, reRender);
+    }
 
-  if (dataId > -1) {
-    const foundMenu = menuArray.find((menu) => menu.id === dataId);
-    foundMenu && uniqueMenuData.add(foundMenu);
-  }
-
-  console.log("target", target)
-  if(target.dataset.name === "complete-order"){
-    console.log("order btn")
-    document.getElementById("modal")!.style.display = "block"
-  }
-  if (uniqueMenuData.size > 0) {
-    const menuData = Array.from(uniqueMenuData);
-    const totalPrice = menuData.reduce(
-      (sum, currentMenu) => sum + currentMenu.price,
-      0
-    );
-
-    const menuHtmlStr = `
+    function reRender() {
+      if (uniqueMenuData.size >= 0) {
+        const menuData = Array.from(uniqueMenuData);
+        const totalPrice = menuData.reduce(
+          (sum, currentMenu) => sum + currentMenu.price,
+          0
+        );
+        console.log("menu data length", menuData.length)
+        const menuHtmlStr =  `
     <h3 class="order-section__title">Your order</h3>
     <ul class="order-list"> 
       ${menuData
@@ -87,7 +76,7 @@ function onAdd(event: Event) {
           (menu) => `
           <li class="order-item">
             <span class="order-item__name">${menu.name}</span>
-            <button class="order-item__remove-btn" data-id="200" type="button">remove</button>
+            <button class="order-item__remove-btn" data-name="remove-btn" data-id="${menu.id}" type="button">remove</button>
             <span class="order-item__price">$${menu.price}</span>
           </li>
         `
@@ -99,11 +88,53 @@ function onAdd(event: Event) {
           <span class="order-total__label">Total Price:</span>
           <span class="order-total__amount">$${totalPrice}</span>
     </div>
-    <button id="complete-btn"  class="order-section__complete-btn" type="button" data-name="complete-order">
+    <button id="complete-btn"  class="order-section__complete-btn" type="button" data-name="complete-order" disabled="${menuData.length === 0}">
         Complete order
     </button>
    `;
 
-    render(menuHtmlStr, document.getElementById("add-order")!);
+        render(menuHtmlStr, document.getElementById("add-order")!);
+      }
+    }
+  });
+});
+
+function render(htmlString: string, htmlElement: HTMLElement) {
+  if (htmlString && htmlElement) {
+    htmlElement.innerHTML = htmlString;
   }
+}
+
+function onAdd(event: Event, reRender) {
+  const target = event.target as HTMLElement;
+  const dataId = Number(target.dataset.id);
+
+  if (dataId > -1) {
+    const foundMenu = menuArray.find((menu) => menu.id === dataId);
+    foundMenu && uniqueMenuData.add(foundMenu);
+  }
+
+  console.log("target onAdd", target);
+  if (target.dataset.name === "complete-order") {
+    console.log("order btn");
+    document.getElementById("modal")!.style.display = "block";
+  }
+  console.log("uniqueMenuData onAdd", uniqueMenuData);
+  reRender();
+}
+
+function onRemove(event: Event, reRender) {
+  const target = event.target as HTMLElement;
+  const dataId = Number(target.dataset.id);
+
+  if (dataId > -1) {
+    uniqueMenuData.forEach((menu) => {
+      if (menu.id === dataId) {
+        uniqueMenuData.delete(menu);
+      }
+    });
+  }
+
+  console.log("uniqueMenuData onRemove", uniqueMenuData);
+  reRender();
 }
