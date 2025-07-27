@@ -44,29 +44,16 @@ const listItemHtmlStr = `
 `;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // render menu
   const orderMenuEl = document.getElementById("order-menu")!;
   render(listItemHtmlStr, orderMenuEl);
-
-  // add a new menu to Order
-  orderMenuEl.addEventListener("click", onAdd);
-
-  // const orderBtn = document.getElementById("order-btn");
-  // console.log("orderBtn", orderBtn);
-  // if (orderBtn) {
-  //   orderBtn.addEventListener("click", () => {
-  //     // open modal
-  //     console.log("click");
-  //     document.getElementById("modal")!.style.display = "block";
-  //   });
-  // }
+  
+  document.querySelector("main")!.addEventListener("click", onAdd);
 });
 
 function render(htmlString: string, htmlElement: HTMLElement) {
   count++
   console.log("count", count)
   if (htmlString && htmlElement) {
-    //console.log("htnlSting",htmlString)
     htmlElement.innerHTML = htmlString;
   }
 }
@@ -83,6 +70,7 @@ function onAdd(event: Event) {
   console.log("target", target)
   if(target.dataset.name === "complete-order"){
     console.log("order btn")
+    document.getElementById("modal")!.style.display = "block"
   }
   if (uniqueMenuData.size > 0) {
     const menuData = Array.from(uniqueMenuData);
@@ -111,7 +99,7 @@ function onAdd(event: Event) {
           <span class="order-total__label">Total Price:</span>
           <span class="order-total__amount">$${totalPrice}</span>
     </div>
-    <button  class="order-section__complete-btn" type="button" data-name="complete-order">
+    <button id="complete-btn"  class="order-section__complete-btn" type="button" data-name="complete-order">
         Complete order
     </button>
    `;
