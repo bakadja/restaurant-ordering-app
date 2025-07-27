@@ -12,6 +12,7 @@ const imgSRC: ImgSRC = {
   hamburger: HamburgerImg,
   beer: BeerImg,
 };
+let count = 0;
 const uniqueMenuData = new Set<MenuProps>();
 const listItemHtmlStr = `
   <ul id="menu-item" class="menu-item menu-item--pizza">
@@ -42,9 +43,30 @@ const listItemHtmlStr = `
   </ul>
 `;
 
+document.addEventListener("DOMContentLoaded", () => {
+  // render menu
+  const orderMenuEl = document.getElementById("order-menu")!;
+  render(listItemHtmlStr, orderMenuEl);
+
+  // add a new menu to Order
+  orderMenuEl.addEventListener("click", onAdd);
+
+  // const orderBtn = document.getElementById("order-btn");
+  // console.log("orderBtn", orderBtn);
+  // if (orderBtn) {
+  //   orderBtn.addEventListener("click", () => {
+  //     // open modal
+  //     console.log("click");
+  //     document.getElementById("modal")!.style.display = "block";
+  //   });
+  // }
+});
 
 function render(htmlString: string, htmlElement: HTMLElement) {
+  count++
+  console.log("count", count)
   if (htmlString && htmlElement) {
+    //console.log("htnlSting",htmlString)
     htmlElement.innerHTML = htmlString;
   }
 }
@@ -58,9 +80,16 @@ function onAdd(event: Event) {
     foundMenu && uniqueMenuData.add(foundMenu);
   }
 
+  console.log("target", target)
+  if(target.dataset.name === "complete-order"){
+    console.log("order btn")
+  }
   if (uniqueMenuData.size > 0) {
-    const menuData = Array.from(uniqueMenuData)
-    const totalPrice = menuData.reduce((sum, currentMenu) => sum + currentMenu.price , 0)
+    const menuData = Array.from(uniqueMenuData);
+    const totalPrice = menuData.reduce(
+      (sum, currentMenu) => sum + currentMenu.price,
+      0
+    );
 
     const menuHtmlStr = `
     <h3 class="order-section__title">Your order</h3>
@@ -82,7 +111,7 @@ function onAdd(event: Event) {
           <span class="order-total__label">Total Price:</span>
           <span class="order-total__amount">$${totalPrice}</span>
     </div>
-    <button id="order-btn" class="order-section__complete-btn" type="button">
+    <button  class="order-section__complete-btn" type="button" data-name="complete-order">
         Complete order
     </button>
    `;
@@ -90,47 +119,3 @@ function onAdd(event: Event) {
     render(menuHtmlStr, document.getElementById("add-order")!);
   }
 }
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("click domLoaded")
-//   // render menu
-//   const orderMenuEl = document.getElementById("order-menu")!;
-//   render(listItemHtmlStr, orderMenuEl);
-  
-//   // add a new menu to Order
-//   document.addEventListener("click", onAdd);
-  
-//   // complete order
-//   const orderBtn = document.getElementById("order-btn")
-//   console.log("orderBtn", orderBtn)
-//   if(orderBtn) {
-//     orderBtn.addEventListener('click', () => {
-//      // open modal
-//      console.log("click")
-//       document.getElementById("modal")!.style.display = "block"
-//     })
-  
-//   }
-// });
-
-
-console.log("click domLoaded")
-  // render menu
-  const orderMenuEl = document.getElementById("order-menu")!;
-  render(listItemHtmlStr, orderMenuEl);
-  
-  // add a new menu to Order
-  document.addEventListener("click", onAdd);
-  
-  // complete order
-  const orderBtn = document.getElementById("order-btn")
-  console.log("orderBtn", orderBtn)
-  if(orderBtn) {
-    orderBtn.addEventListener('click', () => {
-     // open modal
-     console.log("click")
-      document.getElementById("modal")!.style.display = "block"
-    })
-  
-  }
