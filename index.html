@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restaurant Ordering App</title>
-    <link rel="stylesheet" href="./src/style.css" />
     <!-- Favicon and manifest links -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -14,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Smythe&display=swap"
-      rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Smythe&display=swap"
+    rel="stylesheet"
     />
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
     <header class="site-header">
@@ -28,81 +28,8 @@
     <main>
       <section id="order-menu"></section>
       <section id="add-order" class="order-section"></section>
+      <section id="order-complete"></section>
     </main>
-    <!-- <main>
-      <article class="menu-item menu-item--pizza">
-        <img
-          class="menu-item__image"
-          src="./src/assets/images/pizza.png"
-          alt="A pepperoni, mushroom, and mozzarella pizza"
-        />
-        <header>
-          <h3 class="menu-item__title">Pizza</h3>
-          <p class="menu-item__ingredients">pepperoni, mushroom, mozarella</p>
-          <p class="menu-item__price">$14</p>
-        </header>
-        <button class="menu-item__add-btn" type="button">+</button>
-      </article>
-      <div class="divider"></div>
-      <article class="menu-item menu-item--hamburger">
-        <img
-          class="menu-item__image"
-          src="./src/assets/images/hamburger.png"
-          alt="A beef hamburger with cheese and lettuce"
-        />
-        <header>
-          <h3 class="menu-item__title">Hamburger</h3>
-          <p class="menu-item__ingredients">beef, cheese, lettuce</p>
-          <p class="menu-item__price">$12</p>
-        </header>
-        <button class="menu-item__add-btn" type="button" data-id="23">+</button>
-      </article>
-      <div class="divider"></div>
-      <article class="menu-item menu-item--beer">
-        <img
-          class="menu-item__image"
-          src="./src/assets/images/beer.png"
-          alt="A glass of beer"
-        />
-        <header>
-          <h3 class="menu-item__title">Beer</h3>
-          <p class="menu-item__ingredients">grain, hops, yeast, water</p>
-          <p class="menu-item__price">$12</p>
-        </header>
-        <button class="menu-item__add-btn" type="button">+</button>
-      </article>
-      <div class="divider"></div>
-      Order Section
-      <section id="add-order" class="order-section">
-        <h3 class="order-section__title">Your order</h3>
-        <ul class="order-list">
-          <li class="order-item">
-            <span class="order-item__name">Pizza</span>
-            <button class="order-item__remove-btn" data-id="200" type="button">remove</button>
-            <span class="order-item__price">$14</span>
-          </li>
-          <li class="order-item">
-            <span class="order-item__name">Pizza</span>
-            <button class="order-item__remove-btn" type="button">remove</button>
-            <span class="order-item__price">$12</span>
-          </li>
-        </ul>
-        <div class="divider order-divider"></div>
-        <div class="order-total">
-          <span class="order-total__label">Total Price:</span>
-          <span class="order-total__amount">$26</span>
-        </div>
-        <button class="order-section__complete-btn" type="button">
-          Complete order
-        </button>
-      </section>
-      Ordering complete section
-      <section class="order-complete">
-        <p>
-          Thanks, James! Your order is on its way!
-        </p>
-      </section>
-    </main> -->
     <!-- Modal Section -->
     <div class="modal" id="modal">
       <div class="close-modal-btn-container">
@@ -110,7 +37,6 @@
           type="button"
           class="modal-close-btn"
           id="modal-close-btn"
-          disabled
         >
           X
         </button>
@@ -118,13 +44,14 @@
       <div class="modal-inner" id="modal-inner">
         <h3 class="modal-title">Enter card details</h3>
 
-        <form id="" class="modal-form">
+        <form id="modal-form" class="modal-form">
           <input
             type="text"
             id="input-name"
             name="userName"
             placeholder="Enter your name"
             aria-label="User name"
+            minlength="3"
             required
           />
           <input
@@ -143,7 +70,6 @@
             aria-label="Card CVV"
             required
           />
-
           <button type="submit" class="modal-btn">Pay</button>
         </form>
       </div>

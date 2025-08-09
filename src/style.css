@@ -209,13 +209,6 @@ main {
   background-color: #16db99;
 }
 
-.order-section__complete-btn[disabled="true"] {
-  cursor: not-allowed;
-  /* background-color: #757575; */
-  opacity: 0.2;
-
-}
-
 /* Ordering complete section */
 .order-complete {
   background-color: #ECFDF5;
