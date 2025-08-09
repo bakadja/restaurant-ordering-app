@@ -77,11 +77,12 @@ form?.addEventListener("submit", (e) => {
         </p>
       `
       : ""
-    
+      
+    document.getElementById("add-order")!.classList.add("hidden")
     render(htmlStr, orderCompleteEl as HTMLElement)
+    
     orderCompleteEl!.classList.add("order-complete")
     document.getElementById("modal")!.style.display = "";
-    
 })
 document.getElementById("modal-close-btn")?.addEventListener("click", () => {
     document.getElementById("modal")!.style.display = "";
