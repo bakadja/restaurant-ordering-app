@@ -137,6 +137,11 @@ main {
   border: 1.5px solid #dedede;
 }
 
+.menu-item__add-btn:hover,
+.menu-item__add-btn:active {
+  background-color: #FCD34D;
+}
+
 .divider {
   border-bottom: 1px solid #d2d2d2;
   grid-column: 1 / -1;
@@ -204,7 +209,7 @@ main {
   background-color: #16db99;
 }
 
-.order-section__complete-btn:disabled {
+.order-section__complete-btn[disabled="true"] {
   cursor: not-allowed;
   /* background-color: #757575; */
   opacity: 0.2;
