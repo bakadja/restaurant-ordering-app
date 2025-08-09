@@ -1,8 +1,7 @@
 # Restaurant Ordering App
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/restaurant-ordering-app/ci.yml?branch=main)](https://github.com/yourusername/restaurant-ordering-app/actions)
-[![Version](https://img.shields.io/github/package-json/v/yourusername/restaurant-ordering-app)](https://github.com/yourusername/restaurant-ordering-app)
-[![License](https://img.shields.io/github/license/yourusername/restaurant-ordering-app)](LICENSE)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/22a8af4d-6232-4a27-91e1-67f12f350d87/deploy-status)](https://app.netlify.com/projects/papaya-arithmetic-b2b65b/deploys)
 
 A modern, responsive web application for restaurant menu browsing and order placement. Built with TypeScript and Vite.
 
@@ -41,7 +40,7 @@ A modern, responsive web application for restaurant menu browsing and order plac
 
 ## Demo
 
-Check out the live demo [here](https://bakadja.github.io/restaurant-ordering-app/).
+Check out the live demo [here](https://restaurant.kevinngongang.dev).
 
 ## Getting Started
 
