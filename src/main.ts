@@ -67,8 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
           (sum, currentMenu) => sum + currentMenu.price,
           0
         );
-        console.log("menu data length", menuData.length)
-        const menuHtmlStr =  `
+        console.log("menu data length", menuData.length);
+        const menuHtmlStr =
+          uniqueMenuData.size > 0
+            ? `
     <h3 class="order-section__title">Your order</h3>
     <ul class="order-list"> 
       ${menuData
@@ -88,10 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="order-total__label">Total Price:</span>
           <span class="order-total__amount">$${totalPrice}</span>
     </div>
-    <button id="complete-btn"  class="order-section__complete-btn" type="button" data-name="complete-order" disabled="${menuData.length === 0}">
+    <button id="complete-btn"  class="order-section__complete-btn" type="button" data-name="complete-order" disabled="${
+      menuData.length === 0
+    }">
         Complete order
     </button>
-   `;
+   `
+            : "";
 
         render(menuHtmlStr, document.getElementById("add-order")!);
       }
@@ -100,12 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function render(htmlString: string, htmlElement: HTMLElement) {
-  if (htmlString && htmlElement) {
-    htmlElement.innerHTML = htmlString;
-  }
+  htmlElement.innerHTML = htmlString;
+  // if (htmlString && htmlElement) {
+  // }
 }
 
-function onAdd(event: Event, reRender) {
+function onAdd(event: Event, reRender: () => void) {
   const target = event.target as HTMLElement;
   const dataId = Number(target.dataset.id);
 
@@ -123,7 +128,7 @@ function onAdd(event: Event, reRender) {
   reRender();
 }
 
-function onRemove(event: Event, reRender) {
+function onRemove(event: Event, reRender: () => void) {
   const target = event.target as HTMLElement;
   const dataId = Number(target.dataset.id);
 
